@@ -1,18 +1,9 @@
-# Переменные
-REMOTE_SERVER="user@192.168.31.83"
-REMOTE_DIR="/home/user/MS_Lebedeva/"
-LOCAL_DIR="e:/Вэб инжениринг/Задачи на уроке SSH/backup"
+# Синхронизация локальной директории с удалённой (из локальной в удалённую)
+rsync -avz --exclude-from="e:/Вэб инжениринг/Задачи на уроке SSH/backup/.rsync-exclude" "e:/Вэб инжениринг/Задачи на уроке SSH/backup/" user@192.168.31.83:/home/user/MS_Lebedeva/
 
+# Синхронизация удалённой директории с локальной (из удалённой в локальную)
+rsync -avz --exclude-from="e:/Вэб инжениринг/Задачи на уроке SSH/backup/.rsync-exclude" user@192.168.31.83:/home/user/MS_Lebedeva/ "e:/Вэб инжениринг/Задачи на уроке SSH/backup/"
 
-# Синхронизация файлов (Скриптом)
-rsync -avz --delete $LOCAL_DIR/ $REMOTE_SERVER:$REMOTE_DIR/
+# Для тестового запуска (без реальной синхронизации)
+rsync -avz --dry-run --exclude-from="e:/Вэб инжениринг/Задачи на уроке SSH/backup/.rsync-exclude" "e:/Вэб инжениринг/Задачи на уроке SSH/backup/" user@192.168.31.83:/home/user/MS_Lebedeva/
 
-# Синхронизация файлов (локальные файлы -> сервер) в PowerShell
-rsync -avz --delete "e:/Вэб инжениринг/Задачи на уроке SSH/backup/" user@192.168.31.83:/home/user/MS_Lebedeva/
-
-
-# Обратная синхронизация (с сервера на локальную машину) (Скриптом)
-rsync -avz --delete $REMOTE_SERVER:$REMOTE_DIR/ $LOCAL_DIR/
-
-# Обратная синхронизация файлов (сервер -> локальная машина)  в PowerShell
-rsync -avz --delete user@192.168.31.83:/home/user/MS_Lebedeva/ "e:/Вэб инжениринг/Задачи на уроке SSH/backup/"

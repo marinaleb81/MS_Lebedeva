@@ -17,6 +17,15 @@ ssh user@192.168.31.83 "tar -czf /tmp/backup_$(date +%F).tar.gz -C /home/user/MS
 ssh $REMOTE_SERVER "mkdir -p $REMOTE_EXTRACT_DIR && tar -xzf $REMOTE_ARCHIVE -C $REMOTE_EXTRACT_DIR"
 
 # через PowerShell
-scp user@192.168.31.83:/tmp/backup_$(date +%F).tar.gz "e:/Вэб инжениринг/Задачи на уроке SSH/backup"  # Скачивание архива на локальную машину
-ssh user@192.168.31.83 "rm /tmp/backup_$(date +%F).tar.gz"  # Удаление архива на удалённом сервере
-ssh user@192.168.31.83 "mkdir -p /home/user/MS_Lebedeva/extracted && tar -xzf /tmp/backup_$(date +%F).tar.gz -C /home/user/MS_Lebedeva/extracted"  # Разархивация на удалённом сервере
+
+# Создание архива на удалённом сервере
+ssh user@192.168.31.83 "tar -czf /tmp/backup_$(date +%F).tar.gz -C /path/to/source_dir ."
+
+# Скачивание архива на локальную машину
+scp user@192.168.31.83:/tmp/backup_$(date +%F).tar.gz "e:/Вэб инжиниринг/Задачи на уроке SSH/backup/backup_$(date +%F).tar.gz"
+
+# Разархивация на локальной машине
+tar -xzf "e:/Вэб инжиниринг/Задачи на уроке SSH/backup/backup_$(date +%F).tar.gz" -C "e:/Вэб инжиниринг/Задачи на уроке SSH/backup/extracted/"
+
+# Удаление архива на удалённом сервере
+ssh user@192.168.31.83 "rm /tmp/backup_$(date +%F).tar.gz"
