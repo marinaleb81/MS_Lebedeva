@@ -1,32 +1,96 @@
 # MS_Lebedeva
 
 # TODO-сервис
-Этот сервис реализует CRUD-операции для управления списком задач с использованием FastAPI и SQLite.
+Простое веб-приложение для управления задачами на основе FastAPI с веб-интерфейсом и SQLite.
 
 ![Интерфейс приложения](images/screen.jpg "Интерфейс приложения")
 
-## Как запустить
+## **Запуск приложения**
+
+### 1. **Локальный запуск**
+
+#### Установка и настройка
 1. Склонируйте репозиторий:
-```bash
-git clone https://github.com/marinaleb81/MS_Lebedeva.git
-cd MS_Lebedeva/Final_work/Todo_app
+    ```bash
+    git clone https://github.com/marinaleb81/MS_Lebedeva.git
+    cd MS_Lebedeva/Final_work/Todo_app
+    ```
 
-```
+2. Убедитесь, что у вас установлен Python версии 3.10 или выше.
 
-2. Создайте и запустите контейнер Docker:
-```bash
-docker build -t todo-service .
-docker run -d --name todo-service -p 5000:5000 -v $(pwd)/todo.db:/app/todo.db todo-service
+3. Создайте и активируйте виртуальное окружение:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # Для Linux/MacOS
+    venv\Scripts\activate     # Для Windows
+    ```
 
-```
+4. Установите зависимости:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-**Ссылка на Docker HUB**
-https://hub.docker.com/repository/docker/marinaleb/todo-service/general
+5. Запустите приложение:
+    ```bash
+    uvicorn main:app --reload
+    ```
 
-3. **Маршруты:**
-- Главная страница: http://127.0.0.1:5000/
+6. Откройте браузер и перейдите по адресу: [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
-# Обновление (Версия v. 1.1)
+---
+
+### 2. **Запуск через Docker**
+
+#### Установка и настройка
+1. Убедитесь, что Docker установлен и запущен на вашей машине.
+
+2. Соберите Docker-образ:
+    ```bash
+    docker build -t todo-service .
+    ```
+
+3. Запустите контейнер:
+    ```bash
+    docker run -d --name todo-service -p 5000:5000 todo-service
+    ```
+
+4. Откройте браузер и перейдите по адресу: [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+#### Использование готового образа из Docker Hub
+
+1. Запустите контейнер, используя готовый образ:
+    ```bash
+    docker run -d --name todo-service -p 5000:5000 marinaleb/todo-service:latest
+    ```
+
+2. Откройте браузер и перейдите по адресу: [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+Docker Hub репозиторий: [marinaleb/todo-service](https://hub.docker.com/repository/docker/marinaleb/todo-service/general)
+
+## **Зависимости**
+
+Установленные библиотеки перечислены в `requirements.txt`:
+- FastAPI
+- SQLAlchemy
+- Uvicorn
+- Jinja2
+- Passlib
+- PyJWT
+- Python-dotenv
+- Bcrypt
+- Python-multipart
+- Aiofiles
+
+---
+
+## **Примечания**
+- База данных по умолчанию сохраняется в `./data/todo.db`.
+- Для изменения конфигурации базы данных обновите `SQLALCHEMY_DATABASE_URL` в файле `database.py`.
+- Если возникнут ошибки, используйте `docker logs todo-service` для диагностики.
+
+---
+
+# Доработанная версия v. 1.1
 
 ## 1. **Начало работы**
 1. Запущен код предоставленный преподавателем
@@ -53,10 +117,6 @@ https://hub.docker.com/repository/docker/marinaleb/todo-service/general
 
 ## 3. **Обновление базы данных**
 - Добавлено новое поле `created_at` для хранения времени создания задачи:
-  ```python
-  created_at = Column(DateTime(timezone=True), server_default=func.now())
-  ```
-
 - Выполнена миграция базы данных через Alembic для обновления структуры таблицы.
 
 ---
