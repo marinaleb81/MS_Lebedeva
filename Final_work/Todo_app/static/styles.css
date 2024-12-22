@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/static/fonts/Gilroy-Regular.woff2') format('woff2'),
+         url('/static/fonts/Gilroy-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Gilroy', Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+button {
+    font-size: 16px;
+}
