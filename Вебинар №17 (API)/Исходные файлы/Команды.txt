@@ -1,0 +1,14 @@
+Получить все элементы:
+curl http://localhost:5000/items
+
+Создать новый элемент:
+curl -X POST -H "Content-Type: application/json" -d "{\"id\":1,\"name\":\"Item One\"}" http://localhost:5000/items
+
+Получить элемент по ID:
+curl http://localhost:5000/items/4
+
+Обновить элемент:
+curl -X PUT -H "Content-Type: application/json" -d "{\"id\":1,\"name\":\"Updated Item\"}" http://localhost:5000/items/1
+
+Удалить элемент:
+curl -X DELETE http://localhost:5000/items/1
