@@ -20,6 +20,9 @@ docker run -d --name todo-service -p 5000:5000 -v $(pwd)/todo.db:/app/todo.db to
 
 ```
 
+**Ссылка на Docker HUB**
+https://hub.docker.com/repository/docker/marinaleb/todo-service/general
+
 3. **Маршруты:**
 - Главная страница: http://127.0.0.1:5000/
 
