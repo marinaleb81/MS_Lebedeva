@@ -8,12 +8,16 @@
 ## Как запустить
 1. Склонируйте репозиторий:
 ```bash
-git clone https://github.com/marinaleb81/MS_Lebedeva/tree/main/Final_work/Todo_app cd todo-service
+git clone https://github.com/marinaleb81/MS_Lebedeva.git
+cd MS_Lebedeva/Final_work/Todo_app
+
 ```
 
 2. Создайте и запустите контейнер Docker:
 ```bash
-docker build -t todo-service . docker run -d --name todo-service -p 8080:8080 -v $(pwd)/db.sqlite:/app/db.sqlite todo-service
+docker build -t todo-service .
+docker run -d --name todo-service -p 5000:5000 -v $(pwd)/todo.db:/app/todo.db todo-service
+
 ```
 
 3. **Маршруты:**
